@@ -11,7 +11,12 @@
 
 This includes the full Postman request collection that can be imported to test the app
 
-## TODO
+## Todos
 
 -   Additional validtion of id/search dependent rest actions (update, delete, get 1)
 -   Api tests
+
+## Step by step instructions
+
+-   Can be found in the slides and should be updates with the repo
+-   Ref: https://docs.google.com/presentation/d/1GUR8fWxZXArIpvEfy4rkFvW-igykWiPdk6hoIdesPgk/edit#slide=id.g875eae8f44_0_110
