@@ -13,7 +13,8 @@ This includes the full Postman request collection that can be imported to test t
 
 ## Todos
 
--   Additional validtion of id/search dependent rest actions (update, delete, get 1)
+-   Additional validtion of id/search dependent rest actions (update, delete, get 1, create comment for post)
+-   Improved Postman collection: add variables for quick domain change, add variables for API token so all requests would share one
 -   Api tests
 
 ## Step by step instructions
