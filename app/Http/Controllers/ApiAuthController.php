@@ -45,6 +45,7 @@ class ApiAuthController extends Controller
 
     public function logout()
     {
+        error_log(">>>");
         Auth::user()->tokens()->delete();
         return ['message' => 'See ya, latter, aligater...'];
     }

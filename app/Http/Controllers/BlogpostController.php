@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blogpost;
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BlogpostController extends Controller
 {
@@ -20,6 +21,7 @@ class BlogpostController extends Controller
         // do not forget to add header "Accept: application/json"
         // ... if not failed validation will result in html view returned,
         // ... not json response 422, which is the standard way
+        error_log($request);
         $request->validate([
             'title' => 'required|unique:blogposts,title',
             'text' => 'required|max:255',
