@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blogpost;
 use App\Models\Comment;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 
 class BlogpostController extends Controller
 {
@@ -18,13 +18,11 @@ class BlogpostController extends Controller
 
     public function store(Request $request)
     {
-        // do not forget to add header "Accept: application/json"
-        // ... if not failed validation will result in html view returned,
-        // ... not json response 422, which is the standard way
         error_log($request);
         $request->validate([
             'title' => 'required|unique:blogposts,title',
             'text' => 'required|max:255',
+            'image_name' => 'required|max:255'
         ]);
         return Blogpost::create($request->all());
     }
@@ -52,12 +50,30 @@ class BlogpostController extends Controller
         return Blogpost::destroy($id);
     }
 
-
     public function storePostComment($id, Request $request)
     {
         $request->validate(['text' => 'required|max:255']);
         return Blogpost::find($id)
             ->comments()
             ->save(Comment::create($request->all()));
+    }
+
+    public function storePostImage(Request $request)
+    {
+        $file = $request->file('file');
+        if(File::exists(public_path() . '/storage/' . $request['fileName']))
+            return response()->json([
+                "success" => false,
+                "message" => "File with this name already exists."
+            ], 400);
+        
+        $imageName = $request['fileName']; // .'.'.$file->extension();
+        $imagePath = public_path(). '/storage';
+        $file->move($imagePath, $imageName);
+
+        return response()->json([
+            "success" => true,
+            "message" => "Image has been uploaded successfully."
+        ]);
     }
 }

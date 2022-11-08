@@ -9,7 +9,7 @@ class Blogpost extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'text'];
+    protected $fillable = ['title', 'text', 'image_name'];
     protected $hidden = ['created_at', 'updated_at'];
 
     public function comments()
